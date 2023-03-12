@@ -35,4 +35,4 @@ Produto.init(
     }
 )
 
-modulo.export = Produto;
+module.export = Produto;
