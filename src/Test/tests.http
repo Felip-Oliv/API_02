@@ -7,8 +7,18 @@ Content-Type: application/json
 
 {
     "Descricao": "Bolacha",
-    "DataCriacao": "13/01/2023"
+    "DataCriacao": "10-17-2021 15:40:10"
 }
 
 ###
-PUT http://localhost:3000/ HTTP/1.1
+PUT http://localhost:4200/Update HTTP/1.1
+{
+    "Codigo" : 1,
+    "Descricao": "Arroz"
+}
+
+###
+GET http://localhost:4200/GetOne HTTP/1.1
+{
+    "codigo" : 1
+}
