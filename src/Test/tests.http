@@ -28,4 +28,10 @@ Content-Type: application/json
     "Codigo": 3
 }
 
-###
+### Delete
+DELETE http://localhost:4200/DELETE HTTP/1.1
+Content-Type: application/json
+
+{
+    "Codigo": 3
+}
