@@ -1,38 +1,38 @@
 const sequelize = require('sequelize');
 const database = require('../db');
+const shema = "";
 
-const schema="";
+class Produto extends sequelize.Model { }
 
-class Produto extends sequelize.Model{}
 
 Produto.init(
     {
-        codigo : {
-            type:sequelize.INTEGER,
+        Codigo:
+        {
+            type: sequelize.INTEGER,
             autoIncrement: true,
             allowNull: false,
             primaryKey: true
         },
         Descricao:
         {
-            type:sequelize.STRING,
+            type: sequelize.STRING,
             allowNull: true,
         },
         DataCriacao:
         {
-            type:sequelize.DATE,
+            type: sequelize.DATE,
             allowNull: false,
         },
         DataAtualizacao:
         {
-            type:sequelize.DATE,
+            type: sequelize.DATE,
             allowNull: true,
-        },
-        
+        }
     },
     {
-        sequelize : database, modelName:'tbProduto', schema
+        sequelize: database, modelName: 'tbProduto', shema
     }
 )
 
-module.export = Produto;
+module.exports = Produto;

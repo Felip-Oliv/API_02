@@ -1,83 +1,81 @@
-const ModelProduto = require('../models/produto.model');
+const ModelProduto = require('../models/produto');
 
-module.exports = 
+module.exports =
 {
-    async List(req, res){
+    async List(req, res) {
+         res.header("Access-Control-Allow-Origin", "*");
+        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
         try {
-               const produtos = await ModelProduto.findAll();
-               return res.json(produtos);
+            const produtos = await ModelProduto.findAll();
+            return res.json(produtos);
 
         } catch (erro) {
-            return console.error("Erro na list: ", erro);
-            
+            return console.error("Erro na List : ", erro);
         }
-        
     },
 
-    async Create(req, res){
+    async Create(req, res) {
+              //Qual site tem permissão de realizar a conexão, no exemplo abaixo está o "*" indicando que qualquer site pode fazer a conexão
+    res.header("Access-Control-Allow-Origin", "*");
+	//Quais são os métodos que a conexão pode realizar na API
+    res.header("Access-Control-Allow-Methods", 'GET,PUT,POST,DELETE');
+        
         try {
-               const produtos = await ModelProduto.create(
+            const produtos = await ModelProduto.create(
                 {
-                    Codigo : req.body.Codigo,
-                    Descricao : req.body.Descricao,
-                    DataCriacao : req.body.DataCriacao,
-                    DataAtualizacao : null
-
-
+                   //Codigo: req.body.Codigo, // Comentado para gerar automatico
+                    Descricao: req.body.Descricao,
+                    DataCriacao: req.body.DataCriacao,
+                    DataAtualizacao: null
                 }
-               );
-
-               return res.json("Produto criado com sucesso!!", produtos);
+            );
+            return res.json(produtos);
 
         } catch (erro) {
-            return console.error("Erro na Create: ", erro);
-            
+            return console.error("Erro na Create : ", erro);
         }
-        
     },
 
-    async Update(req, res){
-
+    async Update(req, res) {
         try {
+
             const prod = await ModelProduto.findByPk(req.body.Codigo);
-            if(prod) {
+            if (prod) {
                 prod.Descricao = req.body.Descricao;
                 prod.DataAtualizacao = new Date();
                 await prod.save();
             }
-            return res.json("Alteração realizada com sucesso!! ", prod)
+
+            return res.json(prod);
 
         } catch (erro) {
-            return console.error("Erro no Update: ", erro);
-            
+            return console.error("Erro na Update : ", erro);
         }
-        
     },
 
-    async GetOne(req, res){
-        
+    async GetOne(req, res) {
         try {
+
             const prod = await ModelProduto.findByPk(req.body.Codigo);
 
-            return res.json("Produto!! ", prod)
+            return res.json(prod);
 
         } catch (erro) {
-            return console.error("Erro no GetOne: ", erro);
-            
+            return console.error("Erro na Update : ", erro);
         }
-        
     },
-    async Delete(req, res){
-        
+
+    async Delete(req, res) {
         try {
+
             const prod = await ModelProduto.findByPk(req.body.Codigo);
             await prod.destroy();
-            return res.json("Produto Deletado: ", prod)
+            return res.json(prod);
 
         } catch (erro) {
-            return console.error("Erro no Delete: ", erro);
-            
+            return console.error("Erro na Update : ", erro);
         }
-        
     }
+
+
 }

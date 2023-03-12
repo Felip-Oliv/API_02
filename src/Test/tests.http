@@ -1,0 +1,14 @@
+### Listar produtos
+GET http://localhost:4200/List HTTP/1.1
+
+### Cadastrar produto
+POST http://localhost:4200/Create HTTP/1.1
+Content-Type: application/json
+
+{
+    "Descricao": "Bolacha",
+    "DataCriacao": "13/01/2023"
+}
+
+###
+PUT http://localhost:3000/ HTTP/1.1
